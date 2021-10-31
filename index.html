@@ -15,14 +15,60 @@
 <body>
     <div class="mainWrapper">
         <div class="container" id="displayElement">
-            <div class="row  pt-5">
-                <div class="col-3">
-                    <button onclick="toggleFunction(this)" data-task="add" class="btn btn-primary">Add New Record</button>
+            <div class="row pt-5">
+                <div class="col-2">
+                    <button onclick="toggleFunction(this)" data-task="add" class="btn btn-primary">Add New
+                        Record</button>
+                </div>
+                <div class="col-6 offset-1 d-flex justify-content-end">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle me-2" type="button" id="searchFieldMenu"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Search Filter
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="searchFieldMenu">
+                            <li><a class="dropdown-item" data-selection="code" onclick="selectSearchField(this)"
+                                    href="#">Employee Code</a></li>
+                            <li><a class="dropdown-item" data-selection="name" onclick="selectSearchField(this)"
+                                    href="#">Employee Name</a></li>
+                            <li><a class="dropdown-item" data-selection="desg" onclick="selectSearchField(this)"
+                                    href="#">Employee Designation</a></li>
+                        </ul>
+                    </div>
+                    <input name="searchBox" id="searchBox" class="form-control searchBox me-2" data-task="search"
+                        onkeyup="searchFunc(this)" />
+                    <button class="btn btn-warning" type="button" data-task="clear"
+                        onclick="searchFunc(this)">Clear</button>
+                </div>
+                <div class="col-2 offset-1 d-flex justify-content-end">
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle me-1" type="button" id="filterMenu"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-sliders"></i>&nbsp;&nbsp;Filter Data
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" data-selection="ctcdesc" onclick="selectFilterType(this)"
+                                    href="#">CTC: High To Low</a></li>
+                            <li><a class="dropdown-item" data-selection="ctcasc" onclick="selectFilterType(this)"
+                                    href="#">CTC: Low To High</a></li>
+                            <li><a class="dropdown-item" data-selection="nameasc" onclick="selectFilterType(this)"
+                                    href="#">Name: Ascending</a></li>
+                            <li><a class="dropdown-item" data-selection="namedesc" onclick="selectFilterType(this)"
+                                    href="#">Name: Descending</a></li>
+                        </ul>
+                    </div>
+                    <button class="text-danger clearFilterBtn d-none" id="clearFilterBtn" onclick="clearFilter()"><i
+                            class="fa fa-times-circle"></i></button>
+                </div>
+            </div>
+            <div class="row d-none" id="errorRow">
+                <div class="col-4 offset-4">
+                    <small class="text-danger">No Records Found, select search filter or add valid search value</small>
                 </div>
             </div>
             <div class="row  pt-5">
                 <div class="col-12">
-                    <table id="empList" class="table text-center table-bordered">
+                    <table id="empList" class="table text-center table-bordered table-dark table-striped">
                         <thead>
                             <tr>
                                 <th class="col">Employee Code</th>
@@ -48,7 +94,8 @@
         <div class="container d-none" id="addRecordElement">
             <div class="row pt-3">
                 <div class="col-4 offset-4">
-                    <button onclick="toggleFunction(null)" class="btn btn-warning"><i class="fa fa-arrow-circle-left text-light"></i>&nbsp;&nbsp;Back</button>
+                    <button onclick="toggleFunction(null)" class="btn btn-warning"><i
+                            class="fa fa-arrow-circle-left text-light"></i>&nbsp;&nbsp;Back</button>
                 </div>
             </div>
             <div class="row  pt-5">
@@ -56,20 +103,26 @@
                     <h4 class="pb-3" id="formHeading"></h4>
                     <form name="empForm" id="empForm" autocomplete="off">
                         <div class="mb-3">
-                            <label for="empcode" class="form-label">Employee Code</label>
+                            <label for="empcode" class="form-label">Employee Code<span
+                                    class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="code" required>
+                            <small class="text-danger code-req d-none">Required</small>
                         </div>
                         <div class="mb-3">
-                            <label for="empname" class="form-label">Employee Name</label>
+                            <label for="empname" class="form-label">Employee Name<span
+                                    class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="name" required>
+                            <small class="text-danger name-req d-none">Required</small>
                         </div>
                         <div class="mb-3">
-                            <label for="role" class="form-label">Designation</label>
+                            <label for="role" class="form-label">Designation<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="designation" required>
+                            <small class="text-danger code-desg d-none">Required</small>
                         </div>
                         <div class="mb-3">
-                            <label for="ctc" class="form-label">Employee CTC</label>
+                            <label for="ctc" class="form-label">Employee CTC<span class="text-danger">*</span></label>
                             <input type="currency" class="form-control" id="ctc" required>
+                            <small class="text-danger code-ctc d-none">Required</small>
                         </div>
                         <button type="submit" id="formButton" class="btn btn-primary mt-2"></button>
                     </form>
@@ -79,8 +132,13 @@
     </div>
 
     <script src="scripts/global_script.js"></script>
+    <script src="scripts/storage_script.js"></script>
+    <script src="scripts/form_builder_script.js"></script>
     <script src="scripts/css_script.js"></script>
     <script src="scripts/display_script.js"></script>
+    <script src="scripts/crud_script.js"></script>
+    <script src="scripts/search_script.js"></script>
+    <script src="scripts/filters_script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
