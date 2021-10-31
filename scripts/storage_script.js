@@ -12,13 +12,16 @@ xhr_fetch.send();
 */
 
 //save data
+/*
 function saveDataToJson() {
   let jsonData = JSON.stringify(empData);
   localStorage.setItem("data", jsonData);
 }
-
+*/
 //fetch data
+/*
 function fetchDataFromJson() {
   let jsonData = localStorage.getItem("data");
   empData = JSON.parse(jsonData);
 }
+*/

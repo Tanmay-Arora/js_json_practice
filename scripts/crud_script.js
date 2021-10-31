@@ -8,7 +8,7 @@ function addRecord() {
   empFormData["ctc"] = formCtcSel.value;
   empData.push(empFormData);
   tempEmpData = empData;
-  saveDataToJson();
+  //saveDataToJson();
   toggleFunction(null);
 }
 
@@ -22,7 +22,7 @@ function updateRecord(i) {
   temp["designation"] = formDesgSel.value;
   temp["ctc"] = formCtcSel.value;
   empData[i] = temp;
-  saveDataToJson();
+  //saveDataToJson();
   toggleFunction(null);
 }
 
@@ -35,7 +35,7 @@ function deleteRecord(btnEelement) {
   console.log(empData);
   tableSelector.deleteRow(i);
   rowCount--;
-  saveDataToJson();
+  //saveDataToJson();
   printData(empData);
 }
 

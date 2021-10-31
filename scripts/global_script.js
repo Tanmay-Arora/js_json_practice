@@ -1,5 +1,24 @@
 //global variables
-let empData;
+let empData = [
+  {
+      "code": "MTX001",
+      "name": "John Doe",
+      "designation": "Consultant-Dev",
+      "ctc": "9,00,000"
+  },
+  {
+      "code": "MTX002",
+      "name": "Kyle Grey",
+      "designation": "Consultant-Full Stack",
+      "ctc": "10,00,000"
+  },
+  {
+      "code": "MTX003",
+      "name": "Julia K",
+      "designation": "Consultant-BA",
+      "ctc": "12,00,000"
+  }
+];
 let tempEmpData;
 const method = "GET";
 const url = "../resources/data.json";
@@ -24,7 +43,7 @@ let tableSelector = document
 
 // Webpage Starter Function
 window.onload = () => {
-  fetchDataFromJson();
+  //fetchDataFromJson();
   tempEmpData = empData;
   printData(empData);
 };
