@@ -28,7 +28,7 @@ function selectFilterType(selection) {
 //sort ascending based on ctc
 function ctcSortAscending(arrayParam) {
   arrayParam.sort((a, b) => {
-    return parseInt(b.ctc) - parseInt(a.ctc);
+    return parseInt(a.ctc) - parseInt(b.ctc);
   });
   printSearchData(arrayParam);
 }
@@ -36,7 +36,7 @@ function ctcSortAscending(arrayParam) {
 //sort descending based on ctc
 function ctcSortDescending(arrayParam) {
   arrayParam.sort((a, b) => {
-    return parseInt(b.ctc) - parseInt(a.ctc);
+    return parseInt(a.ctc) - parseInt(b.ctc);
   });
   printSearchData(arrayParam.reverse());
 }
