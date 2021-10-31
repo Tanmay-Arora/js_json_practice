@@ -7,6 +7,7 @@ function addRecord() {
   empFormData["designation"] = formDesgSel.value;
   empFormData["ctc"] = formCtcSel.value;
   empData.push(empFormData);
+  console.log(empData);
   tempEmpData = empData;
   //saveDataToJson();
   toggleFunction(null);
